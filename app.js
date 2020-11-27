@@ -19,12 +19,12 @@ const mongoDBClient = mongoConnection.client;
 
 const app = express();
 
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(pino);
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(cors({origin: '*'})); // allows cross platform http requests to be made
 app.use(bodyParser.json());
-app.use('/assets', express.static('assets')) // MIME types!
 
 app.get('/', (req, res) => {
 	console.log("Visited the home page!");
