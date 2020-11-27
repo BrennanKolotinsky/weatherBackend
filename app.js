@@ -6,7 +6,7 @@ const proxy = require('express-http-proxy');
 
 const axios = require('axios'); // use to send API requests!
 const path = require('path'); // this allows us to easily combine paths
-require('dotenv').config({path: path.join(__dirname, '../.env')}); // this allows us to read in variables from our .env file
+require('dotenv').config({path: path.join(__dirname, '.env')}); // this allows us to read in variables from our .env file
 
 const http = require("http");
 const apiKey = process.env.WEATHER_API_KEY;
@@ -26,7 +26,8 @@ app.use(cors({origin: '*'})); // allows cross platform http requests to be made
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-	res.send("Welcome to the home page!");
+	console.log("Visited the home page!");
+	res.sendFile(path.join(__dirname, './src/App.js'));
 });
 
 app.get('/weather', (req, res) => {
