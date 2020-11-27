@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');  // get the post request information
 const pino = require('express-pino-logger')();
 const cors = require('cors');
-const proxy = require("express-http-proxy");
+const proxy = require('express-http-proxy');
 
 const axios = require('axios'); // use to send API requests!
 const path = require('path'); // this allows us to easily combine paths
@@ -50,6 +50,14 @@ app.get('/weather', (req, res) => {
 app.post('/authenticate', async (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
+
+	if (username === null || password === null) {
+		res.send({
+			auth: 0
+		});
+
+		return;
+	}
 
 	const user = await mongoFunctionality.findUser(mongoDBConnection, mongoDBClient, username, password);
 	res.send({
