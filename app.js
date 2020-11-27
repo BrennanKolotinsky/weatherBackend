@@ -17,7 +17,6 @@ const mongoFunctionality = require('./mongoFunctionality/index.js');
 const mongoDBConnection = mongoConnection.connection; // pass this client in the future to the other calls and then do .then -- like this: https://stackoverflow.com/questions/18650890/keeping-open-a-mongodb-database-connection
 const mongoDBClient = mongoConnection.client;
 
-const express = require('express');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
