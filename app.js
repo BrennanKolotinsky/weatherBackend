@@ -24,10 +24,11 @@ app.use(pino);
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(cors({origin: '*'})); // allows cross platform http requests to be made
 app.use(bodyParser.json());
+app.use('/assets', express.static('assets')) // MIME types!
 
 app.get('/', (req, res) => {
 	console.log("Visited the home page!");
-	res.sendFile(path.join(__dirname, './public/index.html')); // render our HTML
+	res.sendFile(path.join(__dirname, './build/index.html')); // render our HTML
 });
 
 app.get('/weather', (req, res) => {
