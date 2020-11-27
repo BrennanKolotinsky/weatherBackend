@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
 	console.log("Visited the home page!");
-	res.sendFile(path.join(__dirname, './src/App.js'));
+	res.sendFile(path.join(__dirname, './src/index.js'));
 });
 
 app.get('/weather', (req, res) => {
