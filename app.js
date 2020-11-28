@@ -24,12 +24,12 @@ app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(cors({origin: '*'})); // allows cross platform http requests to be made
 app.use(bodyParser.json());
 
-app.get('/weather', (req, res) => {
-	const location = req.query.location === undefined ? "Vancouver" : req.query.location;
+app.post('/weather', (req, res) => {
+	const location = req.body.location === undefined ? "Vancouver" : req.body.location;
 	const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`;
 	axios(
 	{
-	    method: "GET", 
+	    method: "POST", 
 	    url: url,
 	    crossDomain: true, 
 	    data: {
@@ -51,5 +51,5 @@ app.post('/authenticate', async (req, res) => {
 });
 
 const port = process.env.port;
-app.listen(port || 8081, () => {
+app.listen(port || 8080, () => {
 });
