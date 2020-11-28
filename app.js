@@ -51,5 +51,5 @@ app.post('/authenticate', async (req, res) => {
 });
 
 const port = process.env.port;
-app.listen(port || 3000, () => {
+app.listen(port || 8081, () => {
 });
