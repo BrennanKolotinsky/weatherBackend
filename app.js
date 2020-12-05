@@ -40,6 +40,22 @@ app.post('/weather', (req, res) => {
     });
 });
 
+app.get('/weather2', (req, res) => {
+	const location = req.query.location === undefined ? "Vancouver" : req.query.location;
+	const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`;
+	axios(
+	{
+	    method: "POST", 
+	    url: url,
+	    crossDomain: true, 
+	    data: {
+	    }
+	}).then((response) => {
+        res.setHeader('Content-Type', 'application/json');
+  		res.send(JSON.stringify({data: response.data}));
+    });
+});
+
 app.post('/authenticate', async (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
